@@ -24,6 +24,7 @@ function SuggestionsPage() {
     setTimeout(() => {
       setShowContent(isRecording);
     }, 450);
+    return () => {};
   }, [isRecording]);
 
   useEffect(() => {
@@ -46,6 +47,16 @@ function SuggestionsPage() {
     [],
   );
 
+  const debouncedStartListening = useCallback(
+    _.debounce(startListening, 500),
+    [],
+  );
+
+  const debouncedStopListening = useCallback(
+    _.debounce(stopListening, 500),
+    [],
+  );
+
   useEffect(() => {
     if (!_.isEmpty(transcript)) {
       setDelayedTranscript(transcript);
@@ -62,12 +73,12 @@ function SuggestionsPage() {
   // }, [responses]);
 
   const handleListen = () => {
-    const newRecordingValue = !isRecording;
+    const newRecordingValue = !listening;
     if (!newRecordingValue) {
-      stopListening();
+      debouncedStopListening();
       setIsRecording(newRecordingValue);
     } else {
-      startListening();
+      debouncedStartListening();
       setIsRecording(newRecordingValue);
     }
   };
