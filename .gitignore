@@ -4,6 +4,11 @@ dist/
 .env
 *.log
 
+# Nx
+.nx
+tmp
+.cache
+
 # Vite build
 .vite/
 
@@ -29,3 +34,6 @@ yarn.lock
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
+.nx/installation
+.nx/cache
+.nx/workspace-data
