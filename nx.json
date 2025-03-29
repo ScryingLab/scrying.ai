@@ -1,0 +1,16 @@
+// tools/dev-runner/project.json
+{
+  "name": "dev-runner",
+  "targets": {
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          { "command": "nx run api:dev" },
+          { "command": "nx run react-native-client:start" }
+        ],
+        "parallel": true
+      }
+    }
+  }
+}
